@@ -1,0 +1,47 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: email-agent-backend
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - ENVIRONMENT=production
+    volumes:
+      - ./storage/uploads:/app/storage/uploads
+      - ./storage/default_attachments:/app/storage/default_attachments
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: email-agent-mcp
+    command: ["python", "mcp_server.py"]
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env
+    environment:
+      - EMAIL_API_BASE_URL=http://backend:8000
+      - MCP_HOST=0.0.0.0
+      - MCP_PORT=8001
+      - MCP_TRANSPORT=streamable-http
+    depends_on:
+      backend:
+        condition: service_healthy
+    volumes:
+      - ./storage/default_attachments:/app/storage/default_attachments
+    restart: unless-stopped

@@ -1,0 +1,35 @@
+[project]
+name = "email-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Aman", email = "amanmulla4020@gmail.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "email-validator>=2.3.0",
+    "fastapi>=0.143.3",
+    "httpx>=0.28.1",
+    "langchain-groq>=1.1.3",
+    "langgraph>=1.2.15",
+    "mcp>=1.0.0",
+    "pydantic>=2.14.1",
+    "pydantic-settings>=2.15.0",
+    "pyngrok>=8.1.2",
+    "pytest>=9.1.1",
+    "python-dotenv>=1.2.4",
+    "uvicorn>=0.54.0",
+]
+
+[project.scripts]
+email-agent = "email_agent:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+

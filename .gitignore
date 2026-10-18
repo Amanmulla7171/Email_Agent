@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+
+# Testing and Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build and Distribution
+dist/
+build/
+*.egg-info/
+
+# Uploaded User Attachments
+storage/uploads/*
+!storage/uploads/.gitkeep
+!storage/default_attachments/
+
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

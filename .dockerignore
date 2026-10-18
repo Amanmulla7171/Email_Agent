@@ -1,0 +1,43 @@
+# Version control
+.git
+.gitignore
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python cache & artifacts
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+dist/
+build/
+*.egg-info/
+
+# Virtual environments
+.venv
+venv
+env
+ENV
+
+# Testing and coverage
+.pytest_cache
+.coverage
+htmlcov
+
+# Uploaded test files
+storage/uploads/*
+!storage/uploads/.gitkeep
+
+# IDEs
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
